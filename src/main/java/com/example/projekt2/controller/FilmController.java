@@ -1,6 +1,6 @@
 package com.example.projekt2.controller;
 
-import com.example.projekt2.model.dto.FilmDto;
+import com.example.projekt2.model.dto.FilmReadDto;
 import com.example.projekt2.service.FilmService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import static com.example.projekt2.model.mapper.FilmMapper.mapFilmListToFilmDtoList;
-import static com.example.projekt2.model.mapper.FilmMapper.mapFilmToFilmDto;
+import static com.example.projekt2.model.mapper.FilmMapper.mapFilmListToFilmReadDtoList;
+import static com.example.projekt2.model.mapper.FilmMapper.mapFilmToFilmReadDto;
 
 @RestController
 @RequestMapping("api")
@@ -25,12 +25,12 @@ public class FilmController {
     }
 
     @GetMapping("films")
-    public ResponseEntity<List<FilmDto>> getFilms() {
-        return new ResponseEntity<>(mapFilmListToFilmDtoList(filmService.getAllFilms()), HttpStatus.OK);
+    public ResponseEntity<List<FilmReadDto>> getFilms() {
+        return new ResponseEntity<>(mapFilmListToFilmReadDtoList(filmService.getAllFilms()), HttpStatus.OK);
     }
 
     @GetMapping("films/{id}")
-    public ResponseEntity<FilmDto> getFilmById(@PathVariable("id") Long id) {
-        return new ResponseEntity<>(mapFilmToFilmDto().apply(filmService.getFilmById(id)), HttpStatus.OK);
+    public ResponseEntity<FilmReadDto> getFilmById(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(mapFilmToFilmReadDto().apply(filmService.getFilmById(id)), HttpStatus.OK);
     }
 }

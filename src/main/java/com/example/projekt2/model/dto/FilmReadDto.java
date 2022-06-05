@@ -1,27 +1,24 @@
 package com.example.projekt2.model.dto;
 
-import com.example.projekt2.model.Actor;
-import com.example.projekt2.model.Director;
-
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
 
-public class FilmDto {
+public class FilmReadDto {
 
     private Long id;
     private LocalDate released;
-    private Set<Actor> actors = new HashSet<>();
-    private Director director;
+    private Set<ActorDto> actors = new HashSet<>();
+    private DirectorReadDto directorReadDto;
     private Long minutes;
     private String name;
 
-    private FilmDto(FilmDtoBuilder builder) {
+    private FilmReadDto(FilmReadDtoBuilder builder) {
         this.id = builder.id;
         this.released = builder.released;
         this.actors = builder.actors;
-        this.director = builder.director;
+        this.directorReadDto = builder.directorReadDto;
         this.minutes = builder.minutes;
         this.name = builder.name;
     }
@@ -34,12 +31,12 @@ public class FilmDto {
         return released;
     }
 
-    public Set<Actor> getActors() {
+    public Set<ActorDto> getActors() {
         return actors;
     }
 
-    public Director getDirector() {
-        return director;
+    public DirectorReadDto getDirector() {
+        return directorReadDto;
     }
 
     public Long getMinutes() {
@@ -50,46 +47,46 @@ public class FilmDto {
         return name;
     }
 
-    public static class FilmDtoBuilder {
+    public static class FilmReadDtoBuilder {
         private Long id;
         private LocalDate released;
-        private Set<Actor> actors = new HashSet<>();
-        private Director director;
+        private Set<ActorDto> actors = new HashSet<>();
+        private DirectorReadDto directorReadDto;
         private Long minutes;
         private String name;
 
-        public FilmDtoBuilder withId(Long id) {
+        public FilmReadDtoBuilder withId(Long id) {
             this.id = id;
             return this;
         }
 
-        public FilmDtoBuilder withReleasedDate(LocalDate released) {
+        public FilmReadDtoBuilder withReleasedDate(LocalDate released) {
             this.released = released;
             return this;
         }
 
-        public FilmDtoBuilder withActors(Set<Actor> actors) {
+        public FilmReadDtoBuilder withActors(Set<ActorDto> actors) {
             this.actors = actors;
             return this;
         }
 
-        public FilmDtoBuilder withDirector(Director director) {
-            this.director = director;
+        public FilmReadDtoBuilder withDirector(DirectorReadDto directorReadDto) {
+            this.directorReadDto = directorReadDto;
             return this;
         }
 
-        public FilmDtoBuilder withMinutes(Long minutes) {
+        public FilmReadDtoBuilder withMinutes(Long minutes) {
             this.minutes = minutes;
             return this;
         }
 
-        public FilmDtoBuilder withName(String name) {
+        public FilmReadDtoBuilder withName(String name) {
             this.name = name;
             return this;
         }
 
-        public FilmDto build() {
-            return new FilmDto(this);
+        public FilmReadDto build() {
+            return new FilmReadDto(this);
         }
 
 

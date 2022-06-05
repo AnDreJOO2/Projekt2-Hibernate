@@ -5,15 +5,15 @@ import com.example.projekt2.model.Film;
 import java.util.HashSet;
 import java.util.Set;
 
-public class DirectorDto {
+public class DirectorReadDto {
 
     private Long id;
-    private Set<Film> films = new HashSet<>();
+    private Set<FilmReadDto> films = new HashSet<>();
     private String name;
     private String surname;
     private Integer age;
 
-    private DirectorDto(DirectorDtoBuilder builder) {
+    private DirectorReadDto(DirectorReadDtoBuilder builder) {
         this.id = builder.id;
         this.films = builder.films;
         this.name = builder.name;
@@ -25,7 +25,7 @@ public class DirectorDto {
         return id;
     }
 
-    public Set<Film> getFilms() {
+    public Set<FilmReadDto> getFilms() {
         return films;
     }
 
@@ -41,41 +41,41 @@ public class DirectorDto {
         return age;
     }
 
-    private static class DirectorDtoBuilder {
+    public static class DirectorReadDtoBuilder {
 
         private Long id;
-        private Set<Film> films = new HashSet<>();
+        private Set<FilmReadDto> films = new HashSet<>();
         private String name;
         private String surname;
         private Integer age;
 
-        public DirectorDtoBuilder withId(Long id) {
+        public DirectorReadDtoBuilder withId(Long id) {
             this.id = id;
             return this;
         }
 
-        public DirectorDtoBuilder withFilms(Set<Film> films) {
+        public DirectorReadDtoBuilder withFilms(Set<FilmReadDto> films) {
             this.films = films;
             return this;
         }
 
-        public DirectorDtoBuilder withName(String name) {
+        public DirectorReadDtoBuilder withName(String name) {
             this.name = name;
             return this;
         }
 
-        public DirectorDtoBuilder withSurname(String surname) {
+        public DirectorReadDtoBuilder withSurname(String surname) {
             this.surname = surname;
             return this;
         }
 
-        public DirectorDtoBuilder withAge(Integer age) {
+        public DirectorReadDtoBuilder withAge(Integer age) {
             this.age = age;
             return this;
         }
 
-        public DirectorDto build() {
-            return new DirectorDto(this);
+        public DirectorReadDto build() {
+            return new DirectorReadDto(this);
         }
     }
 
