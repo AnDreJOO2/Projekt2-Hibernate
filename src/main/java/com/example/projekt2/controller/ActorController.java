@@ -18,6 +18,7 @@ import static com.example.projekt2.model.mapper.ActorMapper.mapActorToActorDto;
 @RequestMapping("api")
 public class ActorController {
 
+
     private final ActorService actorService;
 
     public ActorController(ActorService actorService) {

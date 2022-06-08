@@ -7,12 +7,12 @@ import java.util.Set;
 
 public class FilmReadDto {
 
-    private Long id;
-    private LocalDate released;
-    private Set<ActorDto> actors = new HashSet<>();
-    private DirectorReadDto directorReadDto;
-    private Long minutes;
-    private String name;
+    private final Long id;
+    private final LocalDate released;
+    private final Set<ActorDto> actors;
+    private final DirectorReadDto directorReadDto;
+    private final Long minutes;
+    private final String name;
 
     private FilmReadDto(FilmReadDtoBuilder builder) {
         this.id = builder.id;

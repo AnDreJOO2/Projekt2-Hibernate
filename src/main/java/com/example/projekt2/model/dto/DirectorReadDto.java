@@ -4,22 +4,24 @@ import com.example.projekt2.model.Film;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.BiFunction;
 
 public class DirectorReadDto {
 
-    private Long id;
-    private Set<FilmReadDto> films = new HashSet<>();
-    private String name;
-    private String surname;
-    private Integer age;
+    private final Long id;
+    private final Set<FilmReadDto> films;
+    private final String name;
+    private final String surname;
+    private final Integer age;
 
     private DirectorReadDto(DirectorReadDtoBuilder builder) {
         this.id = builder.id;
-        this.films = builder.films;
         this.name = builder.name;
+        this.films = builder.films;
         this.surname = builder.surname;
         this.age = builder.age;
     }
+
 
     public Long getId() {
         return id;
