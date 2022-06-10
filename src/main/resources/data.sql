@@ -17,3 +17,7 @@ INSERT INTO director(age, name, surname) VALUES (45,'Basia', 'Andrzejewska');
 INSERT INTO director(age, name, surname) VALUES (76,'Anna', 'Kowalczyk');
 
 INSERT INTO film(minutes, name, released, director_id) VALUES (120, 'Władca Pierścieni Dwie Wieże', date('2022-12-5'),1);
+
+INSERT INTO films_actors(film_id, actor_id) VALUES (1,1);
+INSERT INTO films_actors(film_id, actor_id) VALUES (1,2);
+INSERT INTO films_actors(film_id, actor_id) VALUES (1,3);

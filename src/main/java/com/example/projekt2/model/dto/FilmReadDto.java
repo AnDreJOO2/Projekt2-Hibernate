@@ -9,10 +9,13 @@ public class FilmReadDto {
 
     private final Long id;
     private final LocalDate released;
-    private final Set<ActorDto> actors;
-    private final DirectorReadDto directorReadDto;
+
+
     private final Long minutes;
     private final String name;
+
+    private final Set<ActorDto> actors;
+    private final DirectorReadDto directorReadDto;
 
     private FilmReadDto(FilmReadDtoBuilder builder) {
         this.id = builder.id;
