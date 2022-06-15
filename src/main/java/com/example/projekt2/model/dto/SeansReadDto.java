@@ -1,13 +1,10 @@
 package com.example.projekt2.model.dto;
 
-import com.example.projekt2.model.Room;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class SeansReadDto {
 
-    private final Long id;
 
     private final String language;
     private final LocalDate dateOfSeans;
@@ -17,7 +14,6 @@ public class SeansReadDto {
     private final FilmReadDto film;
 
     private SeansReadDto(SeansReadDtoBuilder builder) {
-        this.id = builder.id;
         this.language = builder.language;
         this.dateOfSeans = builder.dateOfSeans;
         this.startTime = builder.startTime;
@@ -25,9 +21,6 @@ public class SeansReadDto {
         this.film = builder.film;
     }
 
-    public Long getId() {
-        return id;
-    }
 
     public RoomReadDto getRoom() {
         return room;
@@ -51,7 +44,6 @@ public class SeansReadDto {
 
     public static class SeansReadDtoBuilder {
 
-        private Long id;
 
         private String language;
         private LocalDate dateOfSeans;
@@ -59,10 +51,6 @@ public class SeansReadDto {
         private RoomReadDto room;
         private FilmReadDto film;
 
-        public SeansReadDtoBuilder withId(Long id) {
-            this.id = id;
-            return this;
-        }
 
         public SeansReadDtoBuilder withRoom(RoomReadDto room) {
             this.room = room;

@@ -12,13 +12,12 @@ import static com.example.projekt2.model.mapper.FilmMapper.mapFilmToFilmReadDtoN
 
 public class RoomMapper {
 
-    public static List<RoomReadDto> mapRoomListToRoomReadDtoList(List<Room> rooms){
+    public static List<RoomReadDto> mapRoomListToRoomReadDtoList(List<Room> rooms) {
         return rooms.stream().map(mapRoomToRoomDto()).collect(Collectors.toList());
     }
 
     public static Function<Room, RoomReadDto> mapRoomToRoomDto() {
         return room -> new RoomReadDto.RoomReadDtoBuilder()
-                .withId(room.getId())
                 .withPlaceNumber(room.getPlaceNumber())
                 .withAirConditioning(room.getAirConditioning())
                 .withSeansSet(room.getSeansSet().stream()

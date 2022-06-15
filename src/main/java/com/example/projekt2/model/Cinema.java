@@ -63,4 +63,12 @@ public class Cinema {
     public void setNumber(String number) {
         this.number = number;
     }
+
+    public Set<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(Set<Room> rooms) {
+        this.rooms = rooms;
+    }
 }

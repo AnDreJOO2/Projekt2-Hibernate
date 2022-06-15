@@ -3,7 +3,6 @@ package com.example.projekt2.model;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.function.BiFunction;
 
 @Entity
 public class Actor {

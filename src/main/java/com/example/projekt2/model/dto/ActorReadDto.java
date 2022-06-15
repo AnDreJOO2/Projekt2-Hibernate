@@ -5,8 +5,6 @@ import java.util.Set;
 
 public class ActorReadDto {
 
-    private final Long id;
-
     private final String name;
     private final String surname;
     private final Integer age;
@@ -14,16 +12,12 @@ public class ActorReadDto {
     private final Set<FilmReadDto> films;
 
     private ActorReadDto(ActorReadDtoBuilder builder) {
-        this.id = builder.id;
         this.name = builder.name;
         this.surname = builder.surname;
         this.age = builder.age;
         this.films = builder.films;
     }
 
-    public Long getId() {
-        return id;
-    }
 
     public Set<FilmReadDto> getFilms() {
         return films;
@@ -42,17 +36,11 @@ public class ActorReadDto {
     }
 
     public static class ActorReadDtoBuilder {
-        private Long id;
 
         private String name;
         private String surname;
         private Integer age;
         private Set<FilmReadDto> films = new HashSet<>();
-
-        public ActorReadDtoBuilder withId(Long id) {
-            this.id = id;
-            return this;
-        }
 
         public ActorReadDtoBuilder withName(String name) {
             this.name = name;

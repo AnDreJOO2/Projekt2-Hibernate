@@ -31,7 +31,6 @@ public class DirectorMapper {
                 .withAge(director.getAge())
                 .withFilms(director.getFilms().stream()
                         .map(film -> new FilmReadDto.FilmReadDtoBuilder()
-                                .withId(film.getId())
                                 .withName(film.getName())
                                 .withMinutes(film.getMinutes())
                                 .withReleasedDate(film.getReleased())

@@ -23,7 +23,6 @@ public class FilmMapper {
                 .withName(film.getName())
                 .withActors(film.getActors().stream()
                         .map(actor -> new ActorReadDto.ActorReadDtoBuilder()
-                                .withId(actor.getId())
                                 .withName(actor.getName())
                                 .withSurname(actor.getSurname())
                                 .withAge(actor.getAge())

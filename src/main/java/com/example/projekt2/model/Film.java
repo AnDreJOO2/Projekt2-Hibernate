@@ -15,8 +15,8 @@ public class Film {
     private LocalDate released;
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH})
     @JoinTable(name = "films_actors",
-    joinColumns = @JoinColumn(name = "film_id"),
-    inverseJoinColumns = @JoinColumn(name = "actor_id"))
+            joinColumns = @JoinColumn(name = "film_id"),
+            inverseJoinColumns = @JoinColumn(name = "actor_id"))
     private Set<Actor> actors = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -28,7 +28,6 @@ public class Film {
 
     public Film() {
     }
-
 
 
     public Long getId() {
