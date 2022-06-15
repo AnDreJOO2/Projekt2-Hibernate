@@ -1,18 +1,16 @@
 package com.example.projekt2.model.dto;
 
-import com.example.projekt2.model.Seans;
-
 import java.util.HashSet;
 import java.util.Set;
 
-public class RoomDto {
+public class RoomReadDto {
 
-    private Long id;
-    private Integer placeNumber;
-    private Boolean airConditioning;
-    private Set<Seans> seansSet = new HashSet<>();
+    private final Long id;
+    private final Integer placeNumber;
+    private final Boolean airConditioning;
+    private final Set<SeansReadDto> seansSet;
 
-    private RoomDto(RoomDtoBuilder builder) {
+    private RoomReadDto(RoomReadDtoBuilder builder) {
         this.id = builder.id;
         this.placeNumber = builder.placeNumber;
         this.airConditioning = builder.airConditioning;
@@ -31,39 +29,39 @@ public class RoomDto {
         return airConditioning;
     }
 
-    public Set<Seans> getSeansSet() {
+    public Set<SeansReadDto> getSeansSet() {
         return seansSet;
     }
 
-    public static class RoomDtoBuilder {
+    public static class RoomReadDtoBuilder {
 
         private Long id;
         private Integer placeNumber;
         private Boolean airConditioning;
-        private Set<Seans> seansSet = new HashSet<>();
+        private Set<SeansReadDto> seansSet = new HashSet<>();
 
-        public RoomDtoBuilder withId(Long id) {
+        public RoomReadDtoBuilder withId(Long id) {
             this.id = id;
             return this;
         }
 
-        public RoomDtoBuilder withPlaceNumber(Integer placeNumber) {
+        public RoomReadDtoBuilder withPlaceNumber(Integer placeNumber) {
             this.placeNumber = placeNumber;
             return this;
         }
 
-        public RoomDtoBuilder withAirConditioning(Boolean airConditioning) {
+        public RoomReadDtoBuilder withAirConditioning(Boolean airConditioning) {
             this.airConditioning = airConditioning;
             return this;
         }
 
-        public RoomDtoBuilder withId(Set<Seans> seansSet) {
+        public RoomReadDtoBuilder withSeansSet(Set<SeansReadDto> seansSet) {
             this.seansSet = seansSet;
             return this;
         }
 
-        public RoomDto build() {
-            return new RoomDto(this);
+        public RoomReadDto build() {
+            return new RoomReadDto(this);
         }
     }
 }

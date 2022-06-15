@@ -1,7 +1,7 @@
 package com.example.projekt2.model.mapper;
 
 import com.example.projekt2.model.Film;
-import com.example.projekt2.model.dto.ActorDto;
+import com.example.projekt2.model.dto.ActorReadDto;
 import com.example.projekt2.model.dto.FilmReadDto;
 
 import java.util.List;
@@ -12,18 +12,17 @@ import static com.example.projekt2.model.mapper.DirectorMapper.mapDirectorToDire
 
 public class FilmMapper {
 
-    public static List<FilmReadDto> mapFilmListToFilmReadDtoList(List<Film> films){
+    public static List<FilmReadDto> mapFilmListToFilmReadDtoList(List<Film> films) {
         return films.stream().map(mapFilmToFilmReadDto()).collect(Collectors.toList());
     }
 
-    public static Function<Film, FilmReadDto> mapFilmToFilmReadDto(){
+    public static Function<Film, FilmReadDto> mapFilmToFilmReadDto() {
         return film -> new FilmReadDto.FilmReadDtoBuilder()
-                .withId(film.getId())
                 .withReleasedDate(film.getReleased())
                 .withMinutes(film.getMinutes())
                 .withName(film.getName())
                 .withActors(film.getActors().stream()
-                        .map(actor -> new ActorDto.ActorDtoBuilder()
+                        .map(actor -> new ActorReadDto.ActorReadDtoBuilder()
                                 .withId(actor.getId())
                                 .withName(actor.getName())
                                 .withSurname(actor.getSurname())
@@ -32,6 +31,14 @@ public class FilmMapper {
                         )
                         .collect(Collectors.toSet()))
                 .withDirector(mapDirectorToDirectorReadDto().apply(film.getDirector()))
+                .build();
+    }
+
+    public static Function<Film, FilmReadDto> mapFilmToFilmReadDtoNoActorDirectorData() {
+        return film -> new FilmReadDto.FilmReadDtoBuilder()
+                .withReleasedDate(film.getReleased())
+                .withMinutes(film.getMinutes())
+                .withName(film.getName())
                 .build();
     }
 }

@@ -1,38 +1,39 @@
 package com.example.projekt2.model.dto;
 
-import com.example.projekt2.model.Film;
 import com.example.projekt2.model.Room;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class SeansDto {
+public class SeansReadDto {
 
-    private Long id;
-    private Room room;
-    private Film film;
-    private String language;
-    private LocalDate dateOfSeans;
-    private LocalTime startTime;
+    private final Long id;
 
-    private SeansDto(SeansDtoBuilder builder) {
+    private final String language;
+    private final LocalDate dateOfSeans;
+    private final LocalTime startTime;
+
+    private final RoomReadDto room;
+    private final FilmReadDto film;
+
+    private SeansReadDto(SeansReadDtoBuilder builder) {
         this.id = builder.id;
-        this.room = builder.room;
-        this.film = builder.film;
         this.language = builder.language;
         this.dateOfSeans = builder.dateOfSeans;
         this.startTime = builder.startTime;
+        this.room = builder.room;
+        this.film = builder.film;
     }
 
     public Long getId() {
         return id;
     }
 
-    public Room getRoom() {
+    public RoomReadDto getRoom() {
         return room;
     }
 
-    public Film getFilm() {
+    public FilmReadDto getFilm() {
         return film;
     }
 
@@ -48,47 +49,48 @@ public class SeansDto {
         return startTime;
     }
 
-    public static class SeansDtoBuilder {
+    public static class SeansReadDtoBuilder {
 
         private Long id;
-        private Room room;
-        private Film film;
+
         private String language;
         private LocalDate dateOfSeans;
         private LocalTime startTime;
+        private RoomReadDto room;
+        private FilmReadDto film;
 
-        public SeansDtoBuilder withId(Long id) {
+        public SeansReadDtoBuilder withId(Long id) {
             this.id = id;
             return this;
         }
 
-        public SeansDtoBuilder withRoom(Room room) {
+        public SeansReadDtoBuilder withRoom(RoomReadDto room) {
             this.room = room;
             return this;
         }
 
-        public SeansDtoBuilder withFilm(Film film) {
+        public SeansReadDtoBuilder withFilm(FilmReadDto film) {
             this.film = film;
             return this;
         }
 
-        public SeansDtoBuilder withLanguage(String language) {
+        public SeansReadDtoBuilder withLanguage(String language) {
             this.language = language;
             return this;
         }
 
-        public SeansDtoBuilder withDateOfSeans(LocalDate dateOfSeans) {
+        public SeansReadDtoBuilder withDateOfSeans(LocalDate dateOfSeans) {
             this.dateOfSeans = dateOfSeans;
             return this;
         }
 
-        public SeansDtoBuilder withStartTime(LocalTime startTime) {
+        public SeansReadDtoBuilder withStartTime(LocalTime startTime) {
             this.startTime = startTime;
             return this;
         }
 
-        public SeansDto build() {
-            return new SeansDto(this);
+        public SeansReadDto build() {
+            return new SeansReadDto(this);
         }
 
 

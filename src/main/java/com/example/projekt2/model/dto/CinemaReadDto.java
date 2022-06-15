@@ -5,16 +5,16 @@ import com.example.projekt2.model.Room;
 import java.util.HashSet;
 import java.util.Set;
 
-public class CinemaDto {
+public class CinemaReadDto {
 
-    private Long id;
-    private String name;
-    private String city;
-    private String street;
-    private String number;
-    private Set<Room> rooms = new HashSet<>();
+    private final Long id;
+    private final String name;
+    private final String city;
+    private final String street;
+    private final String number;
+    private final Set<Room> rooms;
 
-    public CinemaDto(CinemaDtoBuilder builder) {
+    public CinemaReadDto(CinemaReadDtoBuilder builder) {
         this.id = builder.id;
         this.name = builder.name;
         this.city = builder.city;
@@ -47,7 +47,7 @@ public class CinemaDto {
         return rooms;
     }
 
-    public static class CinemaDtoBuilder {
+    public static class CinemaReadDtoBuilder {
 
         private Long id;
         private String name;
@@ -56,38 +56,38 @@ public class CinemaDto {
         private String number;
         private Set<Room> rooms = new HashSet<>();
 
-        public CinemaDtoBuilder withId(Long id) {
+        public CinemaReadDtoBuilder withId(Long id) {
             this.id = id;
             return this;
         }
 
-        public CinemaDtoBuilder withName(String name) {
+        public CinemaReadDtoBuilder withName(String name) {
             this.name = name;
             return this;
         }
 
-        public CinemaDtoBuilder withCity(String city) {
+        public CinemaReadDtoBuilder withCity(String city) {
             this.city = city;
             return this;
         }
 
-        public CinemaDtoBuilder withStreet(String street) {
+        public CinemaReadDtoBuilder withStreet(String street) {
             this.street = street;
             return this;
         }
 
-        public CinemaDtoBuilder withNumber(String number) {
+        public CinemaReadDtoBuilder withNumber(String number) {
             this.number = number;
             return this;
         }
 
-        public CinemaDtoBuilder withRooms(Set<Room> rooms) {
+        public CinemaReadDtoBuilder withRooms(Set<Room> rooms) {
             this.rooms = rooms;
             return this;
         }
 
-        public CinemaDto build() {
-            return new CinemaDto(this);
+        public CinemaReadDto build() {
+            return new CinemaReadDto(this);
         }
 
     }

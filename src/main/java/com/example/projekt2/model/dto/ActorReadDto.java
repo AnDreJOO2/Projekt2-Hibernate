@@ -1,21 +1,19 @@
 package com.example.projekt2.model.dto;
 
-import com.example.projekt2.model.Film;
-
 import java.util.HashSet;
 import java.util.Set;
 
-public class ActorDto {
+public class ActorReadDto {
 
-    private Long id;
+    private final Long id;
 
-    private String name;
-    private String surname;
-    private Integer age;
+    private final String name;
+    private final String surname;
+    private final Integer age;
 
-    private Set<FilmReadDto> films = new HashSet<>();
+    private final Set<FilmReadDto> films;
 
-    private ActorDto(ActorDtoBuilder builder) {
+    private ActorReadDto(ActorReadDtoBuilder builder) {
         this.id = builder.id;
         this.name = builder.name;
         this.surname = builder.surname;
@@ -43,7 +41,7 @@ public class ActorDto {
         return age;
     }
 
-    public static class ActorDtoBuilder {
+    public static class ActorReadDtoBuilder {
         private Long id;
 
         private String name;
@@ -51,33 +49,33 @@ public class ActorDto {
         private Integer age;
         private Set<FilmReadDto> films = new HashSet<>();
 
-        public ActorDtoBuilder withId(Long id) {
+        public ActorReadDtoBuilder withId(Long id) {
             this.id = id;
             return this;
         }
 
-        public ActorDtoBuilder withName(String name) {
+        public ActorReadDtoBuilder withName(String name) {
             this.name = name;
             return this;
         }
 
-        public ActorDtoBuilder withSurname(String surname) {
+        public ActorReadDtoBuilder withSurname(String surname) {
             this.surname = surname;
             return this;
         }
 
-        public ActorDtoBuilder withAge(Integer age) {
+        public ActorReadDtoBuilder withAge(Integer age) {
             this.age = age;
             return this;
         }
 
-        public ActorDtoBuilder withFilms(Set<FilmReadDto> films) {
+        public ActorReadDtoBuilder withFilms(Set<FilmReadDto> films) {
             this.films = films;
             return this;
         }
 
-        public ActorDto build() {
-            return new ActorDto(this);
+        public ActorReadDto build() {
+            return new ActorReadDto(this);
         }
     }
 }

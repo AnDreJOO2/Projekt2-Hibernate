@@ -1,6 +1,6 @@
 package com.example.projekt2.controller;
 
-import com.example.projekt2.model.dto.ActorDto;
+import com.example.projekt2.model.dto.ActorReadDto;
 import com.example.projekt2.service.ActorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,12 +26,12 @@ public class ActorController {
     }
 
     @GetMapping("actors")
-    public ResponseEntity<List<ActorDto>> getActors() {
+    public ResponseEntity<List<ActorReadDto>> getActors() {
         return new ResponseEntity<>(mapActorListToActorDtoList(actorService.getActorList()), HttpStatus.OK);
     }
 
     @GetMapping("actors/{id}")
-    public ResponseEntity<ActorDto> getActorById(@PathVariable("id") Long id) {
+    public ResponseEntity<ActorReadDto> getActorById(@PathVariable("id") Long id) {
         return new ResponseEntity<>(mapActorToActorDto().apply(actorService.getActorById(id)), HttpStatus.OK);
     }
 
