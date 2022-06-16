@@ -3,6 +3,7 @@ package com.example.projekt2.service;
 import com.example.projekt2.exception.FilmNotFoundException;
 import com.example.projekt2.model.Film;
 import com.example.projekt2.repository.FilmRepository;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.NoSuchElementException;
 @Service
 public class FilmService {
 
+    public static final int PAGE_SIZE = 5;
     private final FilmRepository filmRepository;
 
     public FilmService(FilmRepository filmRepository) {
@@ -26,8 +28,8 @@ public class FilmService {
         return findFilmById(id);
     }
 
-    public List<Film> getAllFilms(){
-        return filmRepository.findAll();
+    public List<Film> getAllFilms(int page){
+        return filmRepository.findAllFilms(PageRequest.of(page, PAGE_SIZE));
     }
 
 }

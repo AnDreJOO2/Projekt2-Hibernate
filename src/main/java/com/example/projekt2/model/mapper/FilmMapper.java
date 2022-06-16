@@ -13,6 +13,10 @@ import static com.example.projekt2.model.mapper.DirectorMapper.mapDirectorToDire
 public class FilmMapper {
 
     public static List<FilmReadDto> mapFilmListToFilmReadDtoList(List<Film> films) {
+        return films.stream().map(mapFilmToFilmReadDtoNoActorDirectorData()).collect(Collectors.toList());
+    }
+
+    public static List<FilmReadDto> mapFilmListToFilmReadDtoListWithDetails(List<Film> films) {
         return films.stream().map(mapFilmToFilmReadDto()).collect(Collectors.toList());
     }
 
