@@ -22,8 +22,9 @@ public class ShowController {
     }
 
     @GetMapping("shows")
-    public ResponseEntity<List<SeansReadDto>> getShows() {
-        return new ResponseEntity<>(mapShowListToShowReadDtoList(showService.getAllShows()), HttpStatus.OK);
+    public ResponseEntity<List<SeansReadDto>> getShows(@RequestParam(value = "page", required = false, defaultValue = "0") int page) {
+        int pageNumber = (page < 1) ? 1 : page;
+        return new ResponseEntity<>(mapShowListToShowReadDtoList(showService.getAllShows(pageNumber - 1)), HttpStatus.OK);
     }
 
     @GetMapping("shows/{id}")

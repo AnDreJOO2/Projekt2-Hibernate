@@ -21,6 +21,16 @@ public class Director {
     public Director() {
     }
 
+    public void addFilm(Film film){
+        this.getFilms().add(film);
+        film.setDirector(this);
+    }
+
+    public void removeFilm(Film film){
+        this.getFilms().remove(film);
+        film.setDirector(null);
+    }
+
     public Long getId() {
         return id;
     }

@@ -20,8 +20,16 @@ public class Cinema {
     @JoinColumn(name = "cinema_id")
     private Set<Room> rooms = new HashSet<>();
 
-    public Cinema(){
+    public Cinema() {
 
+    }
+
+    public void addRoom(Room room) {
+        this.getRooms().add(room);
+    }
+
+    public void removeRoom(Room room) {
+        this.getRooms().remove(room);
     }
 
     public Long getId() {

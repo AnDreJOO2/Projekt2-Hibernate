@@ -21,8 +21,9 @@ public class CinemaController {
     }
 
     @GetMapping("cinemas")
-    public ResponseEntity<List<CinemaReadDto>> getCinemas() {
-        return new ResponseEntity<>(mapCinemaListToCinemaReadDtoList(cinemaService.getAllCinemas()), HttpStatus.OK);
+    public ResponseEntity<List<CinemaReadDto>> getCinemas(@RequestParam(value = "page", required = false, defaultValue = "0") int page) {
+        int pageNumber = (page<1) ? 1 : page;
+        return new ResponseEntity<>(mapCinemaListToCinemaReadDtoList(cinemaService.getAllCinemas(pageNumber-1)), HttpStatus.OK);
     }
 
     @GetMapping("cinemas/{id}")

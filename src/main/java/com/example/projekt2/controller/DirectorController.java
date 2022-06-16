@@ -21,8 +21,9 @@ public class DirectorController {
     }
 
     @GetMapping("directors")
-    public ResponseEntity<List<DirectorReadDto>> getDirectors() {
-        return new ResponseEntity<>(getDirectorReadDtoList(directorService.getAllDirectors()), HttpStatus.OK);
+    public ResponseEntity<List<DirectorReadDto>> getDirectors(@RequestParam(value = "page", required = false, defaultValue = "0") int page) {
+        int pageNumber = (page < 1) ? 1 : page;
+        return new ResponseEntity<>(getDirectorReadDtoList(directorService.getAllDirectors(pageNumber-1)), HttpStatus.OK);
     }
 
     @GetMapping("directors/{id}")

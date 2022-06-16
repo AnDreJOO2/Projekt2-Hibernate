@@ -23,8 +23,9 @@ public class ActorController {
     }
 
     @GetMapping("actors")
-    public ResponseEntity<List<ActorReadDto>> getActors() {
-        return new ResponseEntity<>(mapActorListToActorDtoList(actorService.getActorList()), HttpStatus.OK);
+    public ResponseEntity<List<ActorReadDto>> getActors(@RequestParam(value = "page", required = false, defaultValue = "0") int page) {
+        int pageNumber = (page<1) ? 1 : page;
+        return new ResponseEntity<>(mapActorListToActorDtoList(actorService.getActorList(pageNumber-1)), HttpStatus.OK);
     }
 
     @GetMapping("actors/{id}")

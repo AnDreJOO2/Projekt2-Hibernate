@@ -29,6 +29,22 @@ public class Film {
     public Film() {
     }
 
+    public void removeDirector(){
+        this.getDirector().getFilms().remove(this);
+        this.setDirector(null);
+    }
+
+    public void addActor(Actor actor){
+        this.actors.add(actor);
+        actor.getFilms().add(this);
+    }
+
+
+    public void removeActor(Actor actor){
+        this.actors.remove(actor);
+        actor.getFilms().remove(this);
+    }
+
 
     public Long getId() {
         return id;
@@ -60,6 +76,7 @@ public class Film {
 
     public void setDirector(Director director) {
         this.director = director;
+        director.getFilms().add(this);
     }
 
     public Long getMinutes() {

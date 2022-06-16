@@ -4,12 +4,15 @@ import com.example.projekt2.exception.CinemaNotFoundException;
 import com.example.projekt2.model.Cinema;
 import com.example.projekt2.model.Seans;
 import com.example.projekt2.repository.CinemaRepository;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class CinemaService {
+
+    public static final int PAGE_SIZE = 5;
 
     private final CinemaRepository cinemaRepository;
 
@@ -25,8 +28,8 @@ public class CinemaService {
         return findCinemaById(id);
     }
 
-    public List<Cinema> getAllCinemas() {
-        return cinemaRepository.findAll();
+    public List<Cinema> getAllCinemas(int page) {
+        return cinemaRepository.findAllCinemas(PageRequest.of(page, PAGE_SIZE));
     }
 
     public void deleteCinemaById(Long id) {

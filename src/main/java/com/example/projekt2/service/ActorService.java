@@ -4,12 +4,15 @@ import com.example.projekt2.exception.ActorNotFoundException;
 import com.example.projekt2.model.Actor;
 import com.example.projekt2.model.Seans;
 import com.example.projekt2.repository.ActorRepository;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class ActorService {
+
+    public static final int PAGE_SIZE = 5;
 
     private final ActorRepository actorRepository;
 
@@ -25,8 +28,8 @@ public class ActorService {
         return findActorById(id);
     }
 
-    public List<Actor> getActorList(){
-        return actorRepository.findAll();
+    public List<Actor> getActorList(int page){
+        return actorRepository.findAllActors(PageRequest.of(page,PAGE_SIZE));
     }
 
     public void deleteActorById(Long id) {

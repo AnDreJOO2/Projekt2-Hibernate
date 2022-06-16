@@ -17,6 +17,16 @@ public class Room {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "room")
     private Set<Seans> seansSet = new HashSet<>();
 
+    public void addSeans(Seans seans) {
+        this.getSeansSet().add(seans);
+        seans.setRoom(this);
+    }
+
+    public void removeSeans(Seans seans) {
+        this.getSeansSet().remove(seans);
+        seans.setRoom(null);
+    }
+
 
     public Room() {
     }

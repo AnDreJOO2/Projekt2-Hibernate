@@ -24,8 +24,9 @@ public class RoomController {
 
 
     @GetMapping("rooms")
-    public ResponseEntity<List<RoomReadDto>> getRooms() {
-        return new ResponseEntity<>(mapRoomListToRoomReadDtoList(roomService.getAllRooms()), HttpStatus.OK);
+    public ResponseEntity<List<RoomReadDto>> getRooms(@RequestParam(value = "page", required = false, defaultValue = "0") int page) {
+        int pageNumber = (page<1) ? 1 : page;
+        return new ResponseEntity<>(mapRoomListToRoomReadDtoList(roomService.getAllRooms(pageNumber-1)), HttpStatus.OK);
     }
 
     @GetMapping("rooms/{id}")

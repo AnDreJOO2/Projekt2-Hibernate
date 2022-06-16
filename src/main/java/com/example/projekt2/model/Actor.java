@@ -21,6 +21,16 @@ public class Actor {
     public Actor() {
     }
 
+    public void addFilm(Film film){
+        this.getFilms().add(film);
+        film.getActors().add(this);
+    }
+
+    public void removeFilm(Film film){
+        this.getFilms().remove(film);
+        film.getActors().remove(this);
+    }
+
     public Long getId() {
         return id;
     }
