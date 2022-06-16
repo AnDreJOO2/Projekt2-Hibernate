@@ -4,10 +4,7 @@ import com.example.projekt2.model.dto.SeansReadDto;
 import com.example.projekt2.service.ShowService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,5 +29,11 @@ public class ShowController {
     @GetMapping("shows/{id}")
     public ResponseEntity<SeansReadDto> getShowById(@PathVariable("id") Long id) {
         return new ResponseEntity<>(mapShowToShowsReadDto().apply(showService.getShowById(id)), HttpStatus.OK);
+    }
+
+    @DeleteMapping("shows/{id}")
+    public ResponseEntity<?> deleteShowById(@PathVariable("id") Long id) {
+        showService.deleteShowById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

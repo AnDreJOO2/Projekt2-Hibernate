@@ -2,6 +2,7 @@ package com.example.projekt2.service;
 
 import com.example.projekt2.exception.ActorNotFoundException;
 import com.example.projekt2.model.Actor;
+import com.example.projekt2.model.Seans;
 import com.example.projekt2.repository.ActorRepository;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +27,10 @@ public class ActorService {
 
     public List<Actor> getActorList(){
         return actorRepository.findAll();
+    }
+
+    public void deleteActorById(Long id) {
+        Actor toDelete = findActorById(id);
+        actorRepository.delete(toDelete);
     }
 }

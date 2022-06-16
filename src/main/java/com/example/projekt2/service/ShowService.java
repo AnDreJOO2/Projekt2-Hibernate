@@ -27,4 +27,9 @@ public class ShowService {
     public List<Seans> getAllShows(){
         return seansRepository.findAll();
     }
+
+    public void deleteShowById(Long id) {
+        Seans toDelete = findShowById(id);
+        seansRepository.delete(toDelete);
+    }
 }

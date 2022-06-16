@@ -4,10 +4,7 @@ import com.example.projekt2.model.dto.ActorReadDto;
 import com.example.projekt2.service.ActorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,6 +30,12 @@ public class ActorController {
     @GetMapping("actors/{id}")
     public ResponseEntity<ActorReadDto> getActorById(@PathVariable("id") Long id) {
         return new ResponseEntity<>(mapActorToActorDto().apply(actorService.getActorById(id)), HttpStatus.OK);
+    }
+
+    @DeleteMapping("actors/{id}")
+    public ResponseEntity<?> deleteActorById(@PathVariable("id") Long id) {
+        actorService.deleteActorById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }

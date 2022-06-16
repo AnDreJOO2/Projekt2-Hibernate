@@ -38,4 +38,10 @@ public class FilmController {
     public ResponseEntity<FilmReadDto> getFilmById(@PathVariable("id") Long id) {
         return new ResponseEntity<>(mapFilmToFilmReadDto().apply(filmService.getFilmById(id)), HttpStatus.OK);
     }
+
+    @DeleteMapping ("films/{id}")
+    public ResponseEntity<?> deleteFilmById(@PathVariable("id") Long id) {
+        filmService.deleteFilmById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

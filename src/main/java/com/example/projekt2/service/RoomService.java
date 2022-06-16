@@ -1,10 +1,8 @@
 package com.example.projekt2.service;
 
-import com.example.projekt2.exception.FilmNotFoundException;
 import com.example.projekt2.exception.RoomNotFoundException;
-import com.example.projekt2.model.Film;
 import com.example.projekt2.model.Room;
-import com.example.projekt2.repository.FilmRepository;
+import com.example.projekt2.model.Seans;
 import com.example.projekt2.repository.RoomRepository;
 import org.springframework.stereotype.Service;
 
@@ -28,5 +26,10 @@ public class RoomService {
 
     public List<Room> getAllRooms(){
         return roomRepository.findAll();
+    }
+
+    public void deleteRoomById(Long id) {
+        Room toDelete = findRoomById(id);
+        roomRepository.delete(toDelete);
     }
 }

@@ -1,9 +1,8 @@
 package com.example.projekt2.service;
 
 import com.example.projekt2.exception.DirectorNotFoundException;
-import com.example.projekt2.exception.FilmNotFoundException;
 import com.example.projekt2.model.Director;
-import com.example.projekt2.model.Film;
+import com.example.projekt2.model.Seans;
 import com.example.projekt2.repository.DirectorRepository;
 import org.springframework.stereotype.Service;
 
@@ -28,5 +27,10 @@ public class DirectorService {
 
     public List<Director> getAllDirectors(){
         return directorRepository.findAll();
+    }
+
+    public void deleteDirectorById(Long id) {
+        Director toDelete = findDirectorById(id);
+        directorRepository.delete(toDelete);
     }
 }
