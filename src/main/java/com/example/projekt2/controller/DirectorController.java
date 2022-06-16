@@ -3,6 +3,7 @@ package com.example.projekt2.controller;
 import com.example.projekt2.model.dto.DirectorReadDto;
 import com.example.projekt2.service.DirectorService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +13,7 @@ import static com.example.projekt2.model.mapper.DirectorMapper.getDirectorReadDt
 import static com.example.projekt2.model.mapper.DirectorMapper.mapDirectorToDirectorReadDto;
 
 @RestController
-@RequestMapping("api")
+@RequestMapping(value = "api", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 public class DirectorController {
     private final DirectorService directorService;
 

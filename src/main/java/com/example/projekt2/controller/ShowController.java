@@ -3,6 +3,7 @@ package com.example.projekt2.controller;
 import com.example.projekt2.model.dto.SeansReadDto;
 import com.example.projekt2.service.ShowService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +13,7 @@ import static com.example.projekt2.model.mapper.ShowMapper.mapShowListToShowRead
 import static com.example.projekt2.model.mapper.ShowMapper.mapShowToShowsReadDto;
 
 @RestController
-@RequestMapping("api")
+@RequestMapping(value = "api", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 public class ShowController {
 
     private final ShowService showService;

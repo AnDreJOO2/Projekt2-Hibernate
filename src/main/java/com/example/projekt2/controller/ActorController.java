@@ -3,6 +3,7 @@ package com.example.projekt2.controller;
 import com.example.projekt2.model.dto.ActorReadDto;
 import com.example.projekt2.service.ActorService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +13,7 @@ import static com.example.projekt2.model.mapper.ActorMapper.mapActorListToActorD
 import static com.example.projekt2.model.mapper.ActorMapper.mapActorToActorDto;
 
 @RestController
-@RequestMapping("api")
+@RequestMapping(value = "api", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 public class ActorController {
 
 
@@ -22,7 +23,7 @@ public class ActorController {
         this.actorService = actorService;
     }
 
-    @GetMapping("actors")
+    @GetMapping(value = "actors")
     public ResponseEntity<List<ActorReadDto>> getActors(@RequestParam(value = "page", required = false, defaultValue = "0") int page) {
         int pageNumber = (page<1) ? 1 : page;
         return new ResponseEntity<>(mapActorListToActorDtoList(actorService.getActorList(pageNumber-1)), HttpStatus.OK);

@@ -3,6 +3,7 @@ package com.example.projekt2.controller;
 import com.example.projekt2.model.dto.FilmReadDto;
 import com.example.projekt2.service.FilmService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +12,7 @@ import java.util.List;
 import static com.example.projekt2.model.mapper.FilmMapper.*;
 
 @RestController
-@RequestMapping("api")
+@RequestMapping(value = "api", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 public class FilmController {
 
     private final FilmService filmService;
