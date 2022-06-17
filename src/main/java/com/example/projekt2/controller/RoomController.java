@@ -1,5 +1,7 @@
 package com.example.projekt2.controller;
 
+import com.example.projekt2.model.Film;
+import com.example.projekt2.model.Room;
 import com.example.projekt2.model.dto.RoomReadDto;
 import com.example.projekt2.service.RoomService;
 import org.springframework.http.HttpStatus;
@@ -33,6 +35,16 @@ public class RoomController {
     @GetMapping(value = "rooms/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<RoomReadDto> getRoomById(@PathVariable("id") Long id) {
         return new ResponseEntity<>(mapRoomToRoomDto().apply(roomService.getRoomById(id)), HttpStatus.OK);
+    }
+
+    @PostMapping("rooms")
+    public ResponseEntity<Room> addRoom(@RequestBody Room room) {
+        return new ResponseEntity<>(roomService.addRoom(room), HttpStatus.CREATED);
+    }
+
+    @PutMapping("rooms/{id}")
+    public ResponseEntity<Room> editRoom(@PathVariable("id") Long id, @RequestBody Room room) {
+        return new ResponseEntity<>(roomService.editRoom(room, id), HttpStatus.OK);
     }
 
     @DeleteMapping("rooms/{id}")

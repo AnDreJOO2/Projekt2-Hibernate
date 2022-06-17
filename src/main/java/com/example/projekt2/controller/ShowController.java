@@ -1,5 +1,7 @@
 package com.example.projekt2.controller;
 
+import com.example.projekt2.model.Room;
+import com.example.projekt2.model.Seans;
 import com.example.projekt2.model.dto.SeansReadDto;
 import com.example.projekt2.service.ShowService;
 import org.springframework.http.HttpStatus;
@@ -31,6 +33,16 @@ public class ShowController {
     @GetMapping(value = "shows/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<SeansReadDto> getShowById(@PathVariable("id") Long id) {
         return new ResponseEntity<>(mapShowToShowsReadDto().apply(showService.getShowById(id)), HttpStatus.OK);
+    }
+
+    @PostMapping("shows")
+    public ResponseEntity<Seans> addShow(@RequestBody Seans seans) {
+        return new ResponseEntity<>(showService.addShow(seans), HttpStatus.CREATED);
+    }
+
+    @PutMapping("shows/{id}")
+    public ResponseEntity<Seans> editShow(@PathVariable("id") Long id, @RequestBody Seans seans) {
+        return new ResponseEntity<>(showService.editShow(seans, id), HttpStatus.OK);
     }
 
     @DeleteMapping("shows/{id}")

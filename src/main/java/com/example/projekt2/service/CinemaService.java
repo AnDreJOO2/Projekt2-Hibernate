@@ -2,7 +2,6 @@ package com.example.projekt2.service;
 
 import com.example.projekt2.exception.CinemaNotFoundException;
 import com.example.projekt2.model.Cinema;
-import com.example.projekt2.model.Seans;
 import com.example.projekt2.repository.CinemaRepository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -35,5 +34,19 @@ public class CinemaService {
     public void deleteCinemaById(Long id) {
         Cinema toDelete = findCinemaById(id);
         cinemaRepository.delete(toDelete);
+    }
+
+    public Cinema addCinema(Cinema cinema) {
+        return cinemaRepository.save(cinema);
+    }
+
+    public Cinema editCinema(Cinema cinema, Long id) {
+        Cinema toEdit = findCinemaById(id);
+        toEdit.setCity(cinema.getCity());
+        toEdit.setName(cinema.getName());
+        toEdit.setNumber(cinema.getNumber());
+        toEdit.setStreet(cinema.getStreet());
+        toEdit.setRooms(cinema.getRooms());
+        return cinemaRepository.save(toEdit);
     }
 }

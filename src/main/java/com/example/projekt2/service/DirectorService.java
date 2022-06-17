@@ -34,4 +34,17 @@ public class DirectorService {
         Director toDelete = findDirectorById(id);
         directorRepository.delete(toDelete);
     }
+
+    public Director addDirector(Director director) {
+        return directorRepository.save(director);
+    }
+
+    public Director editDirector(Director director, Long id) {
+        Director toEdit = findDirectorById(id);
+        toEdit.setName(director.getName());
+        toEdit.setSurname(director.getSurname());
+        toEdit.setAge(director.getAge());
+        toEdit.setFilms(director.getFilms());
+        return directorRepository.save(toEdit);
+    }
 }

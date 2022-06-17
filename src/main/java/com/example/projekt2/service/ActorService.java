@@ -4,7 +4,6 @@ import com.example.projekt2.exception.ActorNotFoundException;
 import com.example.projekt2.model.Actor;
 import com.example.projekt2.model.Film;
 import com.example.projekt2.repository.ActorRepository;
-import com.example.projekt2.repository.FilmRepository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
@@ -21,16 +20,16 @@ public class ActorService {
         this.actorRepository = actorRepository;
     }
 
-    private Actor findActorById(Long id){
-        return actorRepository.findById(id).orElseThrow(()-> new ActorNotFoundException(id));
+    private Actor findActorById(Long id) {
+        return actorRepository.findById(id).orElseThrow(() -> new ActorNotFoundException(id));
     }
 
-    public Actor getActorById(Long id){
+    public Actor getActorById(Long id) {
         return findActorById(id);
     }
 
-    public List<Actor> getActorList(int page, int olderThan){
-        return actorRepository.findAllActors(PageRequest.of(page,PAGE_SIZE),olderThan);
+    public List<Actor> getActorList(int page, int olderThan) {
+        return actorRepository.findAllActors(PageRequest.of(page, PAGE_SIZE), olderThan);
     }
 
     public void deleteActorById(Long id) {
@@ -38,10 +37,21 @@ public class ActorService {
         actorRepository.delete(toDelete);
     }
 
-    public List<Film> getActorFilms(Long id){
+    public List<Film> getActorFilms(Long id) {
         Actor actor = findActorById(id);
         return actorRepository.findAllActorFilms(actor);
     }
 
+    public Actor addActor(Actor actor) {
+        return actorRepository.save(actor);
+    }
 
+    public Actor editActor(Actor actor, Long id) {
+        Actor toEdit = findActorById(id);
+        toEdit.setName(actor.getName());
+        toEdit.setSurname(actor.getSurname());
+        toEdit.setAge(actor.getAge());
+        toEdit.setFilms(actor.getFilms());
+        return actorRepository.save(toEdit);
+    }
 }

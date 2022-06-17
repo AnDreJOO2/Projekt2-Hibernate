@@ -1,5 +1,6 @@
 package com.example.projekt2.controller;
 
+import com.example.projekt2.model.Director;
 import com.example.projekt2.model.dto.DirectorReadDto;
 import com.example.projekt2.service.DirectorService;
 import org.springframework.http.HttpStatus;
@@ -24,12 +25,22 @@ public class DirectorController {
     @GetMapping(value = "directors", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<List<DirectorReadDto>> getDirectors(@RequestParam(value = "page", required = false, defaultValue = "0") int page) {
         int pageNumber = (page < 1) ? 1 : page;
-        return new ResponseEntity<>(getDirectorReadDtoList(directorService.getAllDirectors(pageNumber-1)), HttpStatus.OK);
+        return new ResponseEntity<>(getDirectorReadDtoList(directorService.getAllDirectors(pageNumber - 1)), HttpStatus.OK);
     }
 
     @GetMapping(value = "directors/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<DirectorReadDto> getDirectorById(@PathVariable("id") Long id) {
         return new ResponseEntity<>(mapDirectorToDirectorReadDto().apply(directorService.getDirectorById(id)), HttpStatus.OK);
+    }
+
+    @PostMapping("directors")
+    public ResponseEntity<Director> addDirector(@RequestBody Director director) {
+        return new ResponseEntity<>(directorService.addDirector(director), HttpStatus.CREATED);
+    }
+
+    @PutMapping("directors/{id}")
+    public ResponseEntity<Director> editDirector(@PathVariable("id") Long id, @RequestBody Director director) {
+        return new ResponseEntity<>(directorService.editDirector(director, id), HttpStatus.OK);
     }
 
     @DeleteMapping("directors/{id}")

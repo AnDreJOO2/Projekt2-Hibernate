@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface SeansRepository extends JpaRepository<Seans,Long> {
+public interface SeansRepository extends JpaRepository<Seans, Long> {
 
     @Query("SELECT s from Seans s")
     List<Seans> findAllSeans(Pageable page);

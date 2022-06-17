@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface RoomRepository extends JpaRepository<Room,Long> {
+public interface RoomRepository extends JpaRepository<Room, Long> {
 
     @Query("SELECT r from Room r")
     List<Room> findAllRooms(Pageable page);

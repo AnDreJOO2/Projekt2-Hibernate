@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface DirectorRepository extends JpaRepository<Director,Long> {
+public interface DirectorRepository extends JpaRepository<Director, Long> {
 
     @Query("SELECT d FROM Director d")
     List<Director> findAllDirectors(Pageable page);

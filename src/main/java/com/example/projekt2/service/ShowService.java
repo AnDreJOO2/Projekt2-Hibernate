@@ -19,20 +19,34 @@ public class ShowService {
         this.seansRepository = seansRepository;
     }
 
-    private Seans findShowById(Long id){
+    private Seans findShowById(Long id) {
         return seansRepository.findById(id).orElseThrow(() -> new SeansNotFoundException(id));
     }
 
-    public Seans getShowById(Long id){
+    public Seans getShowById(Long id) {
         return findShowById(id);
     }
 
-    public List<Seans> getAllShows(int page){
-        return seansRepository.findAllSeans(PageRequest.of(page,PAGE_SIZE));
+    public List<Seans> getAllShows(int page) {
+        return seansRepository.findAllSeans(PageRequest.of(page, PAGE_SIZE));
     }
 
     public void deleteShowById(Long id) {
         Seans toDelete = findShowById(id);
         seansRepository.delete(toDelete);
+    }
+
+    public Seans addShow(Seans seans) {
+        return seansRepository.save(seans);
+    }
+
+    public Seans editShow(Seans seans, Long id) {
+        Seans toEdit = findShowById(id);
+        toEdit.setLanguage(seans.getLanguage());
+        toEdit.setRoom(seans.getRoom());
+        toEdit.setFilm(seans.getFilm());
+        toEdit.setDateOfSeans(seans.getDateOfSeans());
+        toEdit.setStartTime(seans.getStartTime());
+        return seansRepository.save(toEdit);
     }
 }

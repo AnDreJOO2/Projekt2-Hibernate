@@ -1,5 +1,7 @@
 package com.example.projekt2.controller;
 
+import com.example.projekt2.model.Actor;
+import com.example.projekt2.model.Cinema;
 import com.example.projekt2.model.dto.CinemaReadDto;
 import com.example.projekt2.service.CinemaService;
 import org.springframework.http.HttpStatus;
@@ -30,6 +32,16 @@ public class CinemaController {
     @GetMapping(value = "cinemas/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<CinemaReadDto> getCinemaById(@PathVariable("id") Long id) {
         return new ResponseEntity<>(mapCinemaToCinemaReadDto().apply(cinemaService.getCinemaById(id)), HttpStatus.OK);
+    }
+
+    @PostMapping("cinemas")
+    public ResponseEntity<Cinema> addCinema(@RequestBody Cinema cinema) {
+        return new ResponseEntity<>(cinemaService.addCinema(cinema), HttpStatus.CREATED);
+    }
+
+    @PutMapping("cinemas/{id}")
+    public ResponseEntity<Cinema> editCinema(@PathVariable("id") Long id, @RequestBody Cinema cinema) {
+        return new ResponseEntity<>(cinemaService.editCinema(cinema, id), HttpStatus.OK);
     }
 
     @DeleteMapping("cinemas/{id}")

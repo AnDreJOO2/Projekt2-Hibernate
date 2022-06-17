@@ -1,5 +1,7 @@
 package com.example.projekt2.controller;
 
+import com.example.projekt2.model.Director;
+import com.example.projekt2.model.Film;
 import com.example.projekt2.model.dto.FilmReadDto;
 import com.example.projekt2.service.FilmService;
 import org.springframework.http.HttpStatus;
@@ -37,6 +39,16 @@ public class FilmController {
     @GetMapping(value = "films/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<FilmReadDto> getFilmById(@PathVariable("id") Long id) {
         return new ResponseEntity<>(mapFilmToFilmReadDto().apply(filmService.getFilmById(id)), HttpStatus.OK);
+    }
+
+    @PostMapping("films")
+    public ResponseEntity<Film> addFilm(@RequestBody Film film) {
+        return new ResponseEntity<>(filmService.addFilm(film), HttpStatus.CREATED);
+    }
+
+    @PutMapping("films/{id}")
+    public ResponseEntity<Film> editDirector(@PathVariable("id") Long id, @RequestBody Film film) {
+        return new ResponseEntity<>(filmService.editFilm(film, id), HttpStatus.OK);
     }
 
     @DeleteMapping("films/{id}")
