@@ -7,6 +7,7 @@ import com.example.projekt2.repository.FilmRepository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -29,6 +30,7 @@ public class FilmService {
     }
 
     public List<Film> getAllFilms(int page) {
+
         return filmRepository.findAllFilms(PageRequest.of(page, PAGE_SIZE));
     }
 

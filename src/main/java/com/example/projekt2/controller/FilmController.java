@@ -17,6 +17,7 @@ public class FilmController {
 
     private final FilmService filmService;
 
+
     public FilmController(FilmService filmService) {
         this.filmService = filmService;
     }
@@ -24,14 +25,12 @@ public class FilmController {
     @GetMapping(value = "films", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<List<FilmReadDto>> getFilms(@RequestParam(value = "page", required = false, defaultValue = "0") int page) {
         int pageNumber = (page < 1) ? 1 : page;
-
         return new ResponseEntity<>(mapFilmListToFilmReadDtoList(filmService.getAllFilms(pageNumber - 1)), HttpStatus.OK);
     }
 
-    @GetMapping(value = "films/details",produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @GetMapping(value = "films/details", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<List<FilmReadDto>> getFilmsWithDetails(@RequestParam(value = "page", required = false, defaultValue = "0") int page) {
         int pageNumber = (page < 1) ? 1 : page;
-
         return new ResponseEntity<>(mapFilmListToFilmReadDtoListWithDetails(filmService.getAllFilms(pageNumber - 1)), HttpStatus.OK);
     }
 
@@ -40,7 +39,7 @@ public class FilmController {
         return new ResponseEntity<>(mapFilmToFilmReadDto().apply(filmService.getFilmById(id)), HttpStatus.OK);
     }
 
-    @DeleteMapping ("films/{id}")
+    @DeleteMapping("films/{id}")
     public ResponseEntity<?> deleteFilmById(@PathVariable("id") Long id) {
         filmService.deleteFilmById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

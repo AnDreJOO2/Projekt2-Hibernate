@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface FilmRepository extends JpaRepository<Film, Long> {
 
-
     @Query("SELECT f FROM Film f")
-     List<Film> findAllFilms(Pageable page);
+    List<Film> findAllFilms(Pageable page);
+
 }

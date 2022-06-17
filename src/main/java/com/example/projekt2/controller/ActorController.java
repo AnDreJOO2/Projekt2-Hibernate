@@ -1,6 +1,7 @@
 package com.example.projekt2.controller;
 
 import com.example.projekt2.model.dto.ActorReadDto;
+import com.example.projekt2.model.dto.FilmReadDto;
 import com.example.projekt2.service.ActorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -11,6 +12,7 @@ import java.util.List;
 
 import static com.example.projekt2.model.mapper.ActorMapper.mapActorListToActorDtoList;
 import static com.example.projekt2.model.mapper.ActorMapper.mapActorToActorDto;
+import static com.example.projekt2.model.mapper.FilmMapper.mapFilmListToFilmReadDtoList;
 
 @RestController
 @RequestMapping("api")
@@ -24,14 +26,21 @@ public class ActorController {
     }
 
     @GetMapping(value = "actors", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<List<ActorReadDto>> getActors(@RequestParam(value = "page", required = false, defaultValue = "0") int page) {
-        int pageNumber = (page<1) ? 1 : page;
-        return new ResponseEntity<>(mapActorListToActorDtoList(actorService.getActorList(pageNumber-1)), HttpStatus.OK);
+    public ResponseEntity<List<ActorReadDto>> getActors(@RequestParam(value = "page", required = false, defaultValue = "0") int page,
+                                                        @RequestParam(value = "olderThan", required = false, defaultValue = "0") int olderThan) {
+        int pageNumber = (page < 1) ? 1 : page;
+        int ageValue = (olderThan <=0 ) ? 0 : olderThan;
+        return new ResponseEntity<>(mapActorListToActorDtoList(actorService.getActorList(pageNumber - 1, ageValue)), HttpStatus.OK);
     }
 
     @GetMapping(value = "actors/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<ActorReadDto> getActorById(@PathVariable("id") Long id) {
         return new ResponseEntity<>(mapActorToActorDto().apply(actorService.getActorById(id)), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "actors/{id}/films", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<List<FilmReadDto>> getActorFilmsByActorId(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(mapFilmListToFilmReadDtoList(actorService.getActorFilms(id)), HttpStatus.OK);
     }
 
     @DeleteMapping("actors/{id}")
