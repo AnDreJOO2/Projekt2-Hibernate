@@ -1,8 +1,7 @@
 package com.example.projekt2.controller;
 
-import com.example.projekt2.model.Room;
 import com.example.projekt2.model.Seans;
-import com.example.projekt2.model.dto.SeansReadDto;
+import com.example.projekt2.model.dto.read.SeansReadDto;
 import com.example.projekt2.service.ShowService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

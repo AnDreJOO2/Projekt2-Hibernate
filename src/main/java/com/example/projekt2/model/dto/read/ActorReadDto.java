@@ -1,4 +1,4 @@
-package com.example.projekt2.model.dto;
+package com.example.projekt2.model.dto.read;
 
 import java.util.HashSet;
 import java.util.Set;

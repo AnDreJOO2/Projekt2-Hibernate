@@ -1,7 +1,7 @@
 package com.example.projekt2.model.mapper;
 
 import com.example.projekt2.model.Cinema;
-import com.example.projekt2.model.dto.CinemaReadDto;
+import com.example.projekt2.model.dto.read.CinemaReadDto;
 
 import java.util.List;
 import java.util.function.Function;

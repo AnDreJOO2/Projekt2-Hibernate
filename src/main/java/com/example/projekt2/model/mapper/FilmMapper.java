@@ -1,8 +1,8 @@
 package com.example.projekt2.model.mapper;
 
 import com.example.projekt2.model.Film;
-import com.example.projekt2.model.dto.ActorReadDto;
-import com.example.projekt2.model.dto.FilmReadDto;
+import com.example.projekt2.model.dto.read.ActorReadDto;
+import com.example.projekt2.model.dto.read.FilmReadDto;
 
 import java.util.List;
 import java.util.function.Function;

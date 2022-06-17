@@ -1,7 +1,7 @@
 package com.example.projekt2.model.mapper;
 
 import com.example.projekt2.model.Seans;
-import com.example.projekt2.model.dto.SeansReadDto;
+import com.example.projekt2.model.dto.read.SeansReadDto;
 
 import java.util.List;
 import java.util.function.Function;

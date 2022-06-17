@@ -1,8 +1,8 @@
 package com.example.projekt2.controller;
 
 import com.example.projekt2.model.Actor;
-import com.example.projekt2.model.dto.ActorReadDto;
-import com.example.projekt2.model.dto.FilmReadDto;
+import com.example.projekt2.model.dto.read.ActorReadDto;
+import com.example.projekt2.model.dto.read.FilmReadDto;
 import com.example.projekt2.service.ActorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

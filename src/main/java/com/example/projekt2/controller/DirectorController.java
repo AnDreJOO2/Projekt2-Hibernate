@@ -1,7 +1,7 @@
 package com.example.projekt2.controller;
 
 import com.example.projekt2.model.Director;
-import com.example.projekt2.model.dto.DirectorReadDto;
+import com.example.projekt2.model.dto.read.DirectorReadDto;
 import com.example.projekt2.service.DirectorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

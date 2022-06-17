@@ -1,8 +1,8 @@
 package com.example.projekt2.model.mapper;
 
 import com.example.projekt2.model.Room;
-import com.example.projekt2.model.dto.RoomReadDto;
-import com.example.projekt2.model.dto.SeansReadDto;
+import com.example.projekt2.model.dto.read.RoomReadDto;
+import com.example.projekt2.model.dto.read.SeansReadDto;
 
 import java.util.List;
 import java.util.function.Function;
