@@ -22,11 +22,13 @@ public class FilmMapper {
 
     public static Function<Film, FilmReadDto> mapFilmToFilmReadDto() {
         return film -> new FilmReadDto.FilmReadDtoBuilder()
+                .withId(film.getId())
                 .withReleasedDate(film.getReleased())
                 .withMinutes(film.getMinutes())
                 .withName(film.getName())
                 .withActors(film.getActors().stream()
                         .map(actor -> new ActorReadDto.ActorReadDtoBuilder()
+                                .withId(actor.getId())
                                 .withName(actor.getName())
                                 .withSurname(actor.getSurname())
                                 .withAge(actor.getAge())
@@ -39,6 +41,7 @@ public class FilmMapper {
 
     public static Function<Film, FilmReadDto> mapFilmToFilmReadDtoNoActorDirectorData() {
         return film -> new FilmReadDto.FilmReadDtoBuilder()
+                .withId(film.getId())
                 .withReleasedDate(film.getReleased())
                 .withMinutes(film.getMinutes())
                 .withName(film.getName())

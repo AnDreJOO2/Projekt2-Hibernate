@@ -7,6 +7,7 @@ import java.util.Set;
 
 public class FilmReadDto {
 
+    private final Long id;
     private final LocalDate released;
 
 
@@ -17,6 +18,7 @@ public class FilmReadDto {
     private final DirectorReadDto directorReadDto;
 
     private FilmReadDto(FilmReadDtoBuilder builder) {
+        this.id = builder.id;
         this.released = builder.released;
         this.actors = builder.actors;
         this.directorReadDto = builder.directorReadDto;
@@ -24,6 +26,13 @@ public class FilmReadDto {
         this.name = builder.name;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public DirectorReadDto getDirectorReadDto() {
+        return directorReadDto;
+    }
 
     public LocalDate getReleased() {
         return released;
@@ -33,9 +42,6 @@ public class FilmReadDto {
         return actors;
     }
 
-    public DirectorReadDto getDirector() {
-        return directorReadDto;
-    }
 
     public Long getMinutes() {
         return minutes;
@@ -46,12 +52,17 @@ public class FilmReadDto {
     }
 
     public static class FilmReadDtoBuilder {
+        private Long id;
         private LocalDate released;
         private Set<ActorReadDto> actors = new HashSet<>();
         private DirectorReadDto directorReadDto;
         private Long minutes;
         private String name;
 
+        public FilmReadDtoBuilder withId(Long id) {
+            this.id = id;
+            return this;
+        }
 
         public FilmReadDtoBuilder withReleasedDate(LocalDate released) {
             this.released = released;

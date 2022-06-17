@@ -5,6 +5,8 @@ import java.util.Set;
 
 public class CinemaReadDto {
 
+    private final Long id;
+
     private final String name;
     private final String city;
     private final String street;
@@ -12,11 +14,16 @@ public class CinemaReadDto {
     private final Set<RoomReadDto> rooms;
 
     public CinemaReadDto(CinemaReadDtoBuilder builder) {
+        this.id = builder.id;
         this.name = builder.name;
         this.city = builder.city;
         this.street = builder.street;
         this.number = builder.number;
         this.rooms = builder.rooms;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
@@ -41,12 +48,18 @@ public class CinemaReadDto {
 
     public static class CinemaReadDtoBuilder {
 
+        private Long id;
+
         private String name;
         private String city;
         private String street;
         private String number;
         private Set<RoomReadDto> rooms = new HashSet<>();
 
+        public CinemaReadDtoBuilder withId(Long id) {
+            this.id = id;
+            return this;
+        }
 
         public CinemaReadDtoBuilder withName(String name) {
             this.name = name;

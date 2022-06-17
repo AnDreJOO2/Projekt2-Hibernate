@@ -18,6 +18,7 @@ public class CinemaMapper {
 
     public static Function<Cinema, CinemaReadDto> mapCinemaToCinemaReadDto() {
         return cinema -> new CinemaReadDto.CinemaReadDtoBuilder()
+                .withId(cinema.getId())
                 .withName(cinema.getName())
                 .withCity(cinema.getCity())
                 .withStreet(cinema.getStreet())

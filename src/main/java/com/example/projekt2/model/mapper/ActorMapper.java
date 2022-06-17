@@ -18,6 +18,7 @@ public class ActorMapper {
 
     public static Function<Actor, ActorReadDto> mapActorToActorDto() {
         return actor -> new ActorReadDto.ActorReadDtoBuilder()
+                .withId(actor.getId())
                 .withName(actor.getName())
                 .withSurname(actor.getSurname())
                 .withAge(actor.getAge())

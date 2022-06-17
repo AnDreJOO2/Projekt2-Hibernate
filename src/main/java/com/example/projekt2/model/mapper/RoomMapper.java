@@ -18,10 +18,12 @@ public class RoomMapper {
 
     public static Function<Room, RoomReadDto> mapRoomToRoomDto() {
         return room -> new RoomReadDto.RoomReadDtoBuilder()
+                .withId(room.getId())
                 .withPlaceNumber(room.getPlaceNumber())
                 .withAirConditioning(room.getAirConditioning())
                 .withSeansSet(room.getSeansSet().stream()
                         .map(seans -> new SeansReadDto.SeansReadDtoBuilder()
+                                .withId(seans.getId())
                                 .withLanguage(seans.getLanguage())
                                 .withDateOfSeans(seans.getDateOfSeans())
                                 .withStartTime(seans.getStartTime())

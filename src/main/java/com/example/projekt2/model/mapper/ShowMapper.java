@@ -18,6 +18,7 @@ public class ShowMapper {
 
     public static Function<Seans, SeansReadDto> mapShowToShowsReadDto() {
         return show -> new SeansReadDto.SeansReadDtoBuilder()
+                .withId(show.getId())
                 .withLanguage(show.getLanguage())
                 .withDateOfSeans(show.getDateOfSeans())
                 .withStartTime(show.getStartTime())
