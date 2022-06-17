@@ -12,7 +12,7 @@ import java.util.List;
 import static com.example.projekt2.model.mapper.FilmMapper.*;
 
 @RestController
-@RequestMapping(value = "api", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+@RequestMapping("api")
 public class FilmController {
 
     private final FilmService filmService;
@@ -21,21 +21,21 @@ public class FilmController {
         this.filmService = filmService;
     }
 
-    @GetMapping("films")
+    @GetMapping(value = "films", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<List<FilmReadDto>> getFilms(@RequestParam(value = "page", required = false, defaultValue = "0") int page) {
         int pageNumber = (page < 1) ? 1 : page;
 
         return new ResponseEntity<>(mapFilmListToFilmReadDtoList(filmService.getAllFilms(pageNumber - 1)), HttpStatus.OK);
     }
 
-    @GetMapping("films/details")
+    @GetMapping(value = "films/details",produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<List<FilmReadDto>> getFilmsWithDetails(@RequestParam(value = "page", required = false, defaultValue = "0") int page) {
         int pageNumber = (page < 1) ? 1 : page;
 
         return new ResponseEntity<>(mapFilmListToFilmReadDtoListWithDetails(filmService.getAllFilms(pageNumber - 1)), HttpStatus.OK);
     }
 
-    @GetMapping("films/{id}")
+    @GetMapping(value = "films/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<FilmReadDto> getFilmById(@PathVariable("id") Long id) {
         return new ResponseEntity<>(mapFilmToFilmReadDto().apply(filmService.getFilmById(id)), HttpStatus.OK);
     }

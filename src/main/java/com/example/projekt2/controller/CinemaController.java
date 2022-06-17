@@ -13,7 +13,7 @@ import static com.example.projekt2.model.mapper.CinemaMapper.mapCinemaListToCine
 import static com.example.projekt2.model.mapper.CinemaMapper.mapCinemaToCinemaReadDto;
 
 @RestController
-@RequestMapping(value = "api", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+@RequestMapping("api")
 public class CinemaController {
     private final CinemaService cinemaService;
 
@@ -21,13 +21,13 @@ public class CinemaController {
         this.cinemaService = cinemaService;
     }
 
-    @GetMapping("cinemas")
+    @GetMapping(value = "cinemas", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<List<CinemaReadDto>> getCinemas(@RequestParam(value = "page", required = false, defaultValue = "0") int page) {
         int pageNumber = (page<1) ? 1 : page;
         return new ResponseEntity<>(mapCinemaListToCinemaReadDtoList(cinemaService.getAllCinemas(pageNumber-1)), HttpStatus.OK);
     }
 
-    @GetMapping("cinemas/{id}")
+    @GetMapping(value = "cinemas/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<CinemaReadDto> getCinemaById(@PathVariable("id") Long id) {
         return new ResponseEntity<>(mapCinemaToCinemaReadDto().apply(cinemaService.getCinemaById(id)), HttpStatus.OK);
     }

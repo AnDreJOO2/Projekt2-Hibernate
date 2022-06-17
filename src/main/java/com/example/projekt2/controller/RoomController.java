@@ -13,7 +13,7 @@ import static com.example.projekt2.model.mapper.RoomMapper.mapRoomListToRoomRead
 import static com.example.projekt2.model.mapper.RoomMapper.mapRoomToRoomDto;
 
 @RestController
-@RequestMapping(value = "api", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+@RequestMapping("api")
 public class RoomController {
 
 
@@ -24,13 +24,13 @@ public class RoomController {
     }
 
 
-    @GetMapping("rooms")
+    @GetMapping(value = "rooms", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<List<RoomReadDto>> getRooms(@RequestParam(value = "page", required = false, defaultValue = "0") int page) {
         int pageNumber = (page<1) ? 1 : page;
         return new ResponseEntity<>(mapRoomListToRoomReadDtoList(roomService.getAllRooms(pageNumber-1)), HttpStatus.OK);
     }
 
-    @GetMapping("rooms/{id}")
+    @GetMapping(value = "rooms/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<RoomReadDto> getRoomById(@PathVariable("id") Long id) {
         return new ResponseEntity<>(mapRoomToRoomDto().apply(roomService.getRoomById(id)), HttpStatus.OK);
     }

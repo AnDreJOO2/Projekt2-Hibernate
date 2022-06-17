@@ -13,7 +13,7 @@ import static com.example.projekt2.model.mapper.DirectorMapper.getDirectorReadDt
 import static com.example.projekt2.model.mapper.DirectorMapper.mapDirectorToDirectorReadDto;
 
 @RestController
-@RequestMapping(value = "api", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+@RequestMapping("api")
 public class DirectorController {
     private final DirectorService directorService;
 
@@ -21,13 +21,13 @@ public class DirectorController {
         this.directorService = directorService;
     }
 
-    @GetMapping("directors")
+    @GetMapping(value = "directors", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<List<DirectorReadDto>> getDirectors(@RequestParam(value = "page", required = false, defaultValue = "0") int page) {
         int pageNumber = (page < 1) ? 1 : page;
         return new ResponseEntity<>(getDirectorReadDtoList(directorService.getAllDirectors(pageNumber-1)), HttpStatus.OK);
     }
 
-    @GetMapping("directors/{id}")
+    @GetMapping(value = "directors/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<DirectorReadDto> getDirectorById(@PathVariable("id") Long id) {
         return new ResponseEntity<>(mapDirectorToDirectorReadDto().apply(directorService.getDirectorById(id)), HttpStatus.OK);
     }

@@ -13,7 +13,7 @@ import static com.example.projekt2.model.mapper.ActorMapper.mapActorListToActorD
 import static com.example.projekt2.model.mapper.ActorMapper.mapActorToActorDto;
 
 @RestController
-@RequestMapping(value = "api", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+@RequestMapping("api")
 public class ActorController {
 
 
@@ -23,13 +23,13 @@ public class ActorController {
         this.actorService = actorService;
     }
 
-    @GetMapping(value = "actors")
+    @GetMapping(value = "actors", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<List<ActorReadDto>> getActors(@RequestParam(value = "page", required = false, defaultValue = "0") int page) {
         int pageNumber = (page<1) ? 1 : page;
         return new ResponseEntity<>(mapActorListToActorDtoList(actorService.getActorList(pageNumber-1)), HttpStatus.OK);
     }
 
-    @GetMapping("actors/{id}")
+    @GetMapping(value = "actors/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<ActorReadDto> getActorById(@PathVariable("id") Long id) {
         return new ResponseEntity<>(mapActorToActorDto().apply(actorService.getActorById(id)), HttpStatus.OK);
     }

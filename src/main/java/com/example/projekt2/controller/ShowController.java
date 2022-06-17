@@ -13,7 +13,7 @@ import static com.example.projekt2.model.mapper.ShowMapper.mapShowListToShowRead
 import static com.example.projekt2.model.mapper.ShowMapper.mapShowToShowsReadDto;
 
 @RestController
-@RequestMapping(value = "api", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+@RequestMapping("api")
 public class ShowController {
 
     private final ShowService showService;
@@ -22,13 +22,13 @@ public class ShowController {
         this.showService = showService;
     }
 
-    @GetMapping("shows")
+    @GetMapping(value = "shows", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<List<SeansReadDto>> getShows(@RequestParam(value = "page", required = false, defaultValue = "0") int page) {
         int pageNumber = (page < 1) ? 1 : page;
         return new ResponseEntity<>(mapShowListToShowReadDtoList(showService.getAllShows(pageNumber - 1)), HttpStatus.OK);
     }
 
-    @GetMapping("shows/{id}")
+    @GetMapping(value = "shows/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<SeansReadDto> getShowById(@PathVariable("id") Long id) {
         return new ResponseEntity<>(mapShowToShowsReadDto().apply(showService.getShowById(id)), HttpStatus.OK);
     }
