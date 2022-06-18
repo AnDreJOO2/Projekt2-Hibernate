@@ -3,12 +3,15 @@ package com.example.projekt2.controller;
 import com.example.projekt2.model.Actor;
 import com.example.projekt2.model.dto.read.ActorReadDto;
 import com.example.projekt2.model.dto.read.FilmReadDto;
+import com.example.projekt2.model.dto.write.ActorWriteDto;
 import com.example.projekt2.service.ActorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 import static com.example.projekt2.model.mapper.ActorMapper.mapActorListToActorDtoList;
@@ -45,7 +48,8 @@ public class ActorController {
     }
 
     @PostMapping("actors")
-    public ResponseEntity<Actor> addActor(@RequestBody Actor actor) {
+    public ResponseEntity<Actor> addActor(@Valid @RequestBody ActorWriteDto actor) {
+
         return new ResponseEntity<>(actorService.addActor(actor), HttpStatus.CREATED);
     }
 

@@ -3,6 +3,7 @@ package com.example.projekt2.service;
 import com.example.projekt2.exception.ActorNotFoundException;
 import com.example.projekt2.model.Actor;
 import com.example.projekt2.model.Film;
+import com.example.projekt2.model.dto.write.ActorWriteDto;
 import com.example.projekt2.repository.ActorRepository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -42,8 +43,10 @@ public class ActorService {
         return actorRepository.findAllActorFilms(actor);
     }
 
-    public Actor addActor(Actor actor) {
-        return actorRepository.save(actor);
+    public Actor addActor(ActorWriteDto actor) {
+        Actor newActor = new Actor();
+        newActor.setName(actor.name());
+        return actorRepository.save(newActor);
     }
 
     public Actor editActor(Actor actor, Long id) {
