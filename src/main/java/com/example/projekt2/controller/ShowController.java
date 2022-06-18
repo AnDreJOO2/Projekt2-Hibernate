@@ -2,12 +2,14 @@ package com.example.projekt2.controller;
 
 import com.example.projekt2.model.Seans;
 import com.example.projekt2.model.dto.read.SeansReadDto;
+import com.example.projekt2.model.dto.write.SeansWriteDto;
 import com.example.projekt2.service.ShowService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 import static com.example.projekt2.model.mapper.ShowMapper.mapShowListToShowReadDtoList;
@@ -34,13 +36,13 @@ public class ShowController {
         return new ResponseEntity<>(mapShowToShowsReadDto().apply(showService.getShowById(id)), HttpStatus.OK);
     }
 
-    @PostMapping("shows")
-    public ResponseEntity<Seans> addShow(@RequestBody Seans seans) {
+    @PostMapping(value = "shows", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<Seans> addShow(@Valid @RequestBody SeansWriteDto seans) {
         return new ResponseEntity<>(showService.addShow(seans), HttpStatus.CREATED);
     }
 
-    @PutMapping("shows/{id}")
-    public ResponseEntity<Seans> editShow(@PathVariable("id") Long id, @RequestBody Seans seans) {
+    @PutMapping(value = "shows/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<Seans> editShow(@PathVariable("id") Long id,@Valid @RequestBody SeansWriteDto seans) {
         return new ResponseEntity<>(showService.editShow(seans, id), HttpStatus.OK);
     }
 

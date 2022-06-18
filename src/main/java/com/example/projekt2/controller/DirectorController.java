@@ -2,12 +2,14 @@ package com.example.projekt2.controller;
 
 import com.example.projekt2.model.Director;
 import com.example.projekt2.model.dto.read.DirectorReadDto;
+import com.example.projekt2.model.dto.write.DirectorWriteDto;
 import com.example.projekt2.service.DirectorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 import static com.example.projekt2.model.mapper.DirectorMapper.getDirectorReadDtoList;
@@ -33,13 +35,13 @@ public class DirectorController {
         return new ResponseEntity<>(mapDirectorToDirectorReadDto().apply(directorService.getDirectorById(id)), HttpStatus.OK);
     }
 
-    @PostMapping("directors")
-    public ResponseEntity<Director> addDirector(@RequestBody Director director) {
+    @PostMapping(value = "directors", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<Director> addDirector(@Valid @RequestBody DirectorWriteDto director) {
         return new ResponseEntity<>(directorService.addDirector(director), HttpStatus.CREATED);
     }
 
-    @PutMapping("directors/{id}")
-    public ResponseEntity<Director> editDirector(@PathVariable("id") Long id, @RequestBody Director director) {
+    @PutMapping(value = "directors/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<Director> editDirector(@PathVariable("id") Long id,@Valid @RequestBody DirectorWriteDto director) {
         return new ResponseEntity<>(directorService.editDirector(director, id), HttpStatus.OK);
     }
 

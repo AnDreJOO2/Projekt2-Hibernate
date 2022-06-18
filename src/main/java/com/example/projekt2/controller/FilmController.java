@@ -2,12 +2,14 @@ package com.example.projekt2.controller;
 
 import com.example.projekt2.model.Film;
 import com.example.projekt2.model.dto.read.FilmReadDto;
+import com.example.projekt2.model.dto.write.FilmWriteDto;
 import com.example.projekt2.service.FilmService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 import static com.example.projekt2.model.mapper.FilmMapper.*;
@@ -40,13 +42,13 @@ public class FilmController {
         return new ResponseEntity<>(mapFilmToFilmReadDto().apply(filmService.getFilmById(id)), HttpStatus.OK);
     }
 
-    @PostMapping("films")
-    public ResponseEntity<Film> addFilm(@RequestBody Film film) {
+    @PostMapping(value = "films", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<Film> addFilm(@Valid @RequestBody FilmWriteDto film) {
         return new ResponseEntity<>(filmService.addFilm(film), HttpStatus.CREATED);
     }
 
-    @PutMapping("films/{id}")
-    public ResponseEntity<Film> editDirector(@PathVariable("id") Long id, @RequestBody Film film) {
+    @PutMapping(value = "films/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<Film> editDirector(@PathVariable("id") Long id,@Valid @RequestBody FilmWriteDto film) {
         return new ResponseEntity<>(filmService.editFilm(film, id), HttpStatus.OK);
     }
 

@@ -1,7 +1,9 @@
 package com.example.projekt2.service;
 
 import com.example.projekt2.exception.FilmNotFoundException;
+import com.example.projekt2.model.Director;
 import com.example.projekt2.model.Film;
+import com.example.projekt2.model.dto.write.FilmWriteDto;
 import com.example.projekt2.repository.FilmRepository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -37,17 +39,19 @@ public class FilmService {
         filmRepository.delete(toDelete);
     }
 
-    public Film addFilm(Film film) {
-        return filmRepository.save(film);
+    public Film addFilm(FilmWriteDto film) {
+        Film newFilm = new Film();
+        //pola
+        return filmRepository.save(newFilm);
     }
 
-    public Film editFilm(Film film, Long id) {
+    public Film editFilm(FilmWriteDto film, Long id) {
         Film toEdit = findFilmById(id);
-        toEdit.setName(film.getName());
-        toEdit.setMinutes(film.getMinutes());
-        toEdit.setReleased(film.getReleased());
-        toEdit.setActors(film.getActors());
-        toEdit.setDirector(film.getDirector());
+        toEdit.setName(film.name());
+        toEdit.setMinutes(film.minutes());
+        toEdit.setReleased(film.released());
+//        toEdit.setActors(film.actorsIds());
+//        toEdit.setDirector(film.directorId());
         return filmRepository.save(toEdit);
     }
 }

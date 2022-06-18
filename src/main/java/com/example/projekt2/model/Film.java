@@ -35,14 +35,19 @@ public class Film {
     }
 
     public void addActor(Actor actor){
-        this.actors.add(actor);
-        actor.getFilms().add(this);
+        if(!this.getActors().contains(actor)){
+            this.actors.add(actor);
+            actor.getFilms().add(this);
+        }
+
     }
 
 
     public void removeActor(Actor actor){
-        this.actors.remove(actor);
-        actor.getFilms().remove(this);
+        if(this.getActors().contains(actor)) {
+            this.actors.remove(actor);
+            actor.getFilms().remove(this);
+        }
     }
 
 

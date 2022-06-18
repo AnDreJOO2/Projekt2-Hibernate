@@ -1,7 +1,9 @@
 package com.example.projekt2.service;
 
 import com.example.projekt2.exception.SeansNotFoundException;
+import com.example.projekt2.model.Room;
 import com.example.projekt2.model.Seans;
+import com.example.projekt2.model.dto.write.SeansWriteDto;
 import com.example.projekt2.repository.SeansRepository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -36,17 +38,19 @@ public class ShowService {
         seansRepository.delete(toDelete);
     }
 
-    public Seans addShow(Seans seans) {
-        return seansRepository.save(seans);
+    public Seans addShow(SeansWriteDto seans) {
+        Seans newSeans = new Seans();
+        //pola
+        return seansRepository.save(newSeans);
     }
 
-    public Seans editShow(Seans seans, Long id) {
+    public Seans editShow(SeansWriteDto seans, Long id) {
         Seans toEdit = findShowById(id);
-        toEdit.setLanguage(seans.getLanguage());
-        toEdit.setRoom(seans.getRoom());
-        toEdit.setFilm(seans.getFilm());
-        toEdit.setDateOfSeans(seans.getDateOfSeans());
-        toEdit.setStartTime(seans.getStartTime());
+        toEdit.setLanguage(seans.language());
+//        toEdit.setRoom(seans.roomId());
+//        toEdit.setFilm(seans.filmId());
+        toEdit.setDateOfSeans(seans.dateOfSeans());
+        toEdit.setStartTime(seans.startTime());
         return seansRepository.save(toEdit);
     }
 }

@@ -26,6 +26,7 @@ public class Cinema {
 
     public void addRoom(Room room) {
         this.getRooms().add(room);
+
     }
 
     public void removeRoom(Room room) {

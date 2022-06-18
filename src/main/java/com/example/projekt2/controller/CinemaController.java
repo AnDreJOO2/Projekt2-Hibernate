@@ -2,12 +2,14 @@ package com.example.projekt2.controller;
 
 import com.example.projekt2.model.Cinema;
 import com.example.projekt2.model.dto.read.CinemaReadDto;
+import com.example.projekt2.model.dto.write.CinemaWriteDto;
 import com.example.projekt2.service.CinemaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 import static com.example.projekt2.model.mapper.CinemaMapper.mapCinemaListToCinemaReadDtoList;
@@ -33,13 +35,13 @@ public class CinemaController {
         return new ResponseEntity<>(mapCinemaToCinemaReadDto().apply(cinemaService.getCinemaById(id)), HttpStatus.OK);
     }
 
-    @PostMapping("cinemas")
-    public ResponseEntity<Cinema> addCinema(@RequestBody Cinema cinema) {
+    @PostMapping(value = "cinemas", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<Cinema> addCinema(@Valid @RequestBody CinemaWriteDto cinema) {
         return new ResponseEntity<>(cinemaService.addCinema(cinema), HttpStatus.CREATED);
     }
 
-    @PutMapping("cinemas/{id}")
-    public ResponseEntity<Cinema> editCinema(@PathVariable("id") Long id, @RequestBody Cinema cinema) {
+    @PutMapping(value = "cinemas/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<Cinema> editCinema(@PathVariable("id") Long id,@Valid @RequestBody CinemaWriteDto cinema) {
         return new ResponseEntity<>(cinemaService.editCinema(cinema, id), HttpStatus.OK);
     }
 

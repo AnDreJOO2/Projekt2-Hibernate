@@ -2,12 +2,14 @@ package com.example.projekt2.controller;
 
 import com.example.projekt2.model.Room;
 import com.example.projekt2.model.dto.read.RoomReadDto;
+import com.example.projekt2.model.dto.write.RoomWriteDto;
 import com.example.projekt2.service.RoomService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 import static com.example.projekt2.model.mapper.RoomMapper.mapRoomListToRoomReadDtoList;
@@ -36,13 +38,13 @@ public class RoomController {
         return new ResponseEntity<>(mapRoomToRoomDto().apply(roomService.getRoomById(id)), HttpStatus.OK);
     }
 
-    @PostMapping("rooms")
-    public ResponseEntity<Room> addRoom(@RequestBody Room room) {
+    @PostMapping(value = "rooms", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<Room> addRoom(@Valid @RequestBody RoomWriteDto room) {
         return new ResponseEntity<>(roomService.addRoom(room), HttpStatus.CREATED);
     }
 
-    @PutMapping("rooms/{id}")
-    public ResponseEntity<Room> editRoom(@PathVariable("id") Long id, @RequestBody Room room) {
+    @PutMapping(value = "rooms/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<Room> editRoom(@PathVariable("id") Long id,@Valid @RequestBody RoomWriteDto room) {
         return new ResponseEntity<>(roomService.editRoom(room, id), HttpStatus.OK);
     }
 

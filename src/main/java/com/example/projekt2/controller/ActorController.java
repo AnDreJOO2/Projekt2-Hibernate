@@ -47,14 +47,14 @@ public class ActorController {
         return new ResponseEntity<>(mapFilmListToFilmReadDtoList(actorService.getActorFilms(id)), HttpStatus.OK);
     }
 
-    @PostMapping("actors")
+    @PostMapping(value = "actors", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<Actor> addActor(@Valid @RequestBody ActorWriteDto actor) {
 
         return new ResponseEntity<>(actorService.addActor(actor), HttpStatus.CREATED);
     }
 
-    @PutMapping("actors/{id}")
-    public ResponseEntity<Actor> editActor(@PathVariable("id") Long id, @RequestBody Actor actor) {
+    @PutMapping(value = "actors/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<Actor> editActor(@PathVariable("id") Long id, @Valid @RequestBody ActorWriteDto actor) {
         return new ResponseEntity<>(actorService.editActor(actor, id), HttpStatus.OK);
     }
 

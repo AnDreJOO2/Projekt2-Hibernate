@@ -1,7 +1,9 @@
 package com.example.projekt2.service;
 
 import com.example.projekt2.exception.RoomNotFoundException;
+import com.example.projekt2.model.Film;
 import com.example.projekt2.model.Room;
+import com.example.projekt2.model.dto.write.RoomWriteDto;
 import com.example.projekt2.repository.RoomRepository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -35,15 +37,17 @@ public class RoomService {
         roomRepository.delete(toDelete);
     }
 
-    public Room addRoom(Room room) {
-        return roomRepository.save(room);
+    public Room addRoom(RoomWriteDto room) {
+        Room newRoom = new Room();
+        //pola
+        return roomRepository.save(newRoom);
     }
 
-    public Room editRoom(Room room, Long id) {
+    public Room editRoom(RoomWriteDto room, Long id) {
         Room toEdit = findRoomById(id);
-        toEdit.setAirConditioning(room.getAirConditioning());
-        toEdit.setPlaceNumber(room.getPlaceNumber());
-        toEdit.setSeansSet(room.getSeansSet());
+        toEdit.setAirConditioning(room.airConditioning());
+        toEdit.setPlaceNumber(room.placeNumber());
+//        toEdit.setSeansSet(room.seansIds());
         return roomRepository.save(toEdit);
     }
 }
