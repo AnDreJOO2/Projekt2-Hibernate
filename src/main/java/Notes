@@ -1,0 +1,3 @@
+#ToDo:Make all ID fields required in RecordWriteDTO
+
+Nulls are the main issue now

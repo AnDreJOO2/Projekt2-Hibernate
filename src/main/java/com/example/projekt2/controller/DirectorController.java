@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-import static com.example.projekt2.model.mapper.DirectorMapper.getDirectorReadDtoList;
-import static com.example.projekt2.model.mapper.DirectorMapper.mapDirectorToDirectorReadDto;
+import static com.example.projekt2.model.mapper.DirectorMapper.*;
 
 @RestController
 @RequestMapping("api")
@@ -32,7 +31,7 @@ public class DirectorController {
 
     @GetMapping(value = "directors/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<DirectorReadDto> getDirectorById(@PathVariable("id") Long id) {
-        return new ResponseEntity<>(mapDirectorToDirectorReadDto().apply(directorService.getDirectorById(id)), HttpStatus.OK);
+        return new ResponseEntity<>(mapDirectorToDirectorReadDtoAll().apply(directorService.getDirectorById(id)), HttpStatus.OK);
     }
 
     @PostMapping(value = "directors", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})

@@ -39,8 +39,20 @@ public class Seans {
     }
 
     public void setRoom(Room room) {
-        this.room = room;
+        if (this.room == null) {
+            this.room = room;
+            room.getSeansSet().add(this);
+        }
     }
+
+    public void removeRoom(Room room) {
+        if (this.room != null) {
+            this.room = null;
+            room.getSeansSet().remove(this);
+        }
+
+    }
+
 
     public Film getFilm() {
         return film;

@@ -17,6 +17,7 @@ public class Room {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "room")
     private Set<Seans> seansSet = new HashSet<>();
 
+
     public Room() {
     }
 

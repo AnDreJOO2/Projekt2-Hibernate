@@ -17,6 +17,7 @@ public class DirectorMapper {
     public static Function<Director, DirectorReadDto> mapDirectorToDirectorReadDto() {
 
         return director -> new DirectorReadDto.DirectorReadDtoBuilder()
+                .withId(director.getId())
                 .withName(director.getName())
                 .withSurname(director.getSurname())
                 .withAge(director.getAge())

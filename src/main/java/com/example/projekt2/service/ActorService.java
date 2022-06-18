@@ -9,6 +9,7 @@ import com.example.projekt2.repository.ActorRepository;
 import com.example.projekt2.repository.FilmRepository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Set;
@@ -47,7 +48,7 @@ public class ActorService {
         Actor actor = findActorById(id);
         return actorRepository.findAllActorFilms(actor);
     }
-
+    @Transactional
     public Actor addActor(ActorWriteDto actor) {
         Actor newActor = new Actor();
         newActor.setName(actor.name());
@@ -58,7 +59,7 @@ public class ActorService {
         }
         return actorRepository.save(newActor);
     }
-
+    @Transactional
     public Actor editActor(ActorWriteDto actor, Long id) {
         Actor toEdit = findActorById(id);
         toEdit.setName(actor.name());

@@ -15,13 +15,13 @@ public class FilmReadDto {
     private final String name;
 
     private final Set<ActorReadDto> actors;
-    private final DirectorReadDto directorReadDto;
+    private final DirectorReadDto director;
 
     private FilmReadDto(FilmReadDtoBuilder builder) {
         this.id = builder.id;
         this.released = builder.released;
         this.actors = builder.actors;
-        this.directorReadDto = builder.directorReadDto;
+        this.director = builder.director;
         this.minutes = builder.minutes;
         this.name = builder.name;
     }
@@ -30,8 +30,8 @@ public class FilmReadDto {
         return id;
     }
 
-    public DirectorReadDto getDirectorReadDto() {
-        return directorReadDto;
+    public DirectorReadDto getDirector() {
+        return director;
     }
 
     public LocalDate getReleased() {
@@ -55,7 +55,7 @@ public class FilmReadDto {
         private Long id;
         private LocalDate released;
         private Set<ActorReadDto> actors = new HashSet<>();
-        private DirectorReadDto directorReadDto;
+        private DirectorReadDto director;
         private Long minutes;
         private String name;
 
@@ -74,8 +74,8 @@ public class FilmReadDto {
             return this;
         }
 
-        public FilmReadDtoBuilder withDirector(DirectorReadDto directorReadDto) {
-            this.directorReadDto = directorReadDto;
+        public FilmReadDtoBuilder withDirector(DirectorReadDto director) {
+            this.director = director;
             return this;
         }
 
