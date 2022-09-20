@@ -71,6 +71,8 @@ Example: http://localhost:8080/api/films
 
 Returns list of objects.
 
+---
+
 #### Additional list endpoint for Film entity with details
 
 Example: http://localhost:8080/api/films/details
@@ -105,6 +107,8 @@ Endpoint: ```http://localhost:8080/api/``` {Plural name of entity}/{ID of elemen
 Example: http://localhost:8080/api/actors/9
 
 Returns single object.
+
+---
 
 #### Additional endpoint for Actor's film list
 
