@@ -76,11 +76,14 @@ Returns list of objects.
 #### Additional list endpoint for Film entity with details
 
 Example: http://localhost:8080/api/films/details
+
 > Optional parameters:
 >
 > page - Default page is 0, allows you to select the exact page you want.
 >
 > Example: http://localhost:8080/api/films/details?page=2
+
+Returns list of films, included information about Director and list of Actors.
 
 ---
 
@@ -93,6 +96,8 @@ Example: http://localhost:8080/api/films/details
 > olderThan - Default is disabled, you can filter list of actors by their age.
 >
 > Example: http://localhost:8080/api/actors?olderThan=44&page=1
+
+Returns list of actors filtered by parameters.
 
 ---
 
